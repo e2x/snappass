@@ -2,8 +2,8 @@ FROM python:3.7-slim
 
 ENV APP_DIR=/usr/src/snappass
 
-RUN groupadd -r snappass && \
-    useradd -r -g snappass snappass && \
+RUN groupadd -g 1000 -r snappass && \
+    useradd -u 1000 -r -g snappass snappass && \
     mkdir -p $APP_DIR
 
 WORKDIR $APP_DIR

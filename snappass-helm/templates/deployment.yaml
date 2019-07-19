@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: snappass-dep
+  labels:
+    app: snappass
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: snappass
+  template:
+    metadata:
+      labels:
+        app: snappass
+    spec:
+      securityContext:
+        runAsUser: 1000
+        fsGroup: 1000
+      containers:
+        - name: redis
+          image: {{ .Values.redis.image.name }}:{{ .Values.redis.image.tag }}
+        - name: snappass
+          image: {{ .Values.snappass.image.name }}:{{ .Values.snappass.image.tag }}
+          ports:
+            - name: http
+              containerPort: 5000
+          env:
+            - name: REDIS_HOST
+              value: "localhost"
+            - name: REDIS_PORT
+              value: "6379"
+            - name: NO_SSL
+              value: "true"
