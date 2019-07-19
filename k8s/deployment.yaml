@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: snappass-dep
+  namespace: snappass-ns
   labels:
     app: snappass
 spec:
@@ -20,8 +21,10 @@ spec:
         runAsUser: 1000
         fsGroup: 1000
       containers:
+        - name: redis
+          image: redis:5.0.5-alpine
         - name: snappass
-          image: lon-harbor.e2x.co.uk/snappass/snappass:0.0.1
+          image: gcr.io/e2x-com/snappass:0.0.1
           ports:
             - name: http
               containerPort: 5000
@@ -32,5 +35,3 @@ spec:
               value: "6379"
             - name: NO_SSL
               value: "true"
-        - name: redis
-          image: redis:latest

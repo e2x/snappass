@@ -2,6 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: snappass-svc
+  namespace: snappass-ns
   labels:
     app: snappass
 spec:
