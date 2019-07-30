@@ -8,6 +8,6 @@ spec:
   ports:
     - port: 5000
       targetPort: 5000
-  type:  {{ .Values.snappass.serviceType }}
+  type:  ClusterIP
   selector:
     app: snappass
