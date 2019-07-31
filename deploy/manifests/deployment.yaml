@@ -25,6 +25,7 @@ spec:
           volumeMounts:
             - name: redis-conf-vol
               mountPath: /usr/local/etc/redis/
+              readOnly: false
         - name: snappass
           image: harbor.e2x.com/library/snappass:0.0.2
           ports:
