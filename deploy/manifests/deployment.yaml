@@ -7,7 +7,7 @@ metadata:
 spec:
   replicas: 1
   strategy:
-    type: RollingUpdate
+    type: Recreate
   selector:
     matchLabels:
       app: snappass
@@ -21,9 +21,12 @@ spec:
         fsGroup: 1000
       containers:
         - name: redis
-          image: harbor.e2x.com/library/snappass:0.0.1
+          image: redis:5.0.5-alpine 
+          volumeMounts:
+            - name: redis-conf-vol
+              mountPath: /usr/local/etc/redis/
         - name: snappass
-          image: redis:5.0.5-alpine
+          image: harbor.e2x.com/library/snappass:0.0.1
           ports:
             - name: http
               containerPort: 5000
@@ -34,3 +37,7 @@ spec:
               value: "6379"
             - name: NO_SSL
               value: "true"
+      volumes:
+        - name: redis-conf-vol
+          configMap:
+            name: redis-conf-cm
