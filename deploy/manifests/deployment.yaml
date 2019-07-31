@@ -28,7 +28,7 @@ spec:
               subPath: redis.conf
               readOnly: true
         - name: snappass
-          image: harbor.e2x.com/library/snappass:0.0.1
+          image: harbor.e2x.com/core/snappass:0.0.1
           ports:
             - name: http
               containerPort: 5000
