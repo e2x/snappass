@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: snappass-external-ingress
+  annotations:
+    kubernetes.io/ingress.class: "nginx-external"
+    certmanager.k8s.io/cluster-issuer: "letsencrypt-prod"
+spec:
+  tls:
+    - hosts:
+      - snappasses.e2x.com
+      secretName: letsencrypt-snappass-external
+  rules:
+  - host: snappasses.e2x.com
+    http:
+        paths:
+        - path: /
+          backend:
+            serviceName: snappass-svc
+            servicePort: 5000
