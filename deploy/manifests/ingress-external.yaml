@@ -8,10 +8,10 @@ metadata:
 spec:
   tls:
     - hosts:
-      - snappasses.e2x.com
+      - snappass.e2x.com
       secretName: letsencrypt-snappass-external
   rules:
-  - host: snappasses.e2x.com
+  - host: snappass.e2x.com
     http:
         paths:
         - path: /
