@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: snappass-dep
+  name: snappass
   labels:
     app: snappass
 spec:
@@ -42,4 +42,4 @@ spec:
       volumes:
         - name: redis-conf-vol
           configMap:
-            name: redis-conf-cm
+            name: redis-conf
