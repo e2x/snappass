@@ -4,12 +4,11 @@ metadata:
   name: snappass-external
   annotations:
     kubernetes.io/ingress.class: "nginx-external"
-    certmanager.k8s.io/cluster-issuer: "letsencrypt-prod"
 spec:
   tls:
     - hosts:
       - snappass.e2x.com
-      secretName: letsencrypt-snappass-external
+      secretName: letsencrypt-snappass-internal
   rules:
   - host: snappass.e2x.com
     http:
